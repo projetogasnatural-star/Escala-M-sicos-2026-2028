@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paróquia Imaculado Coração de Maria - Oficial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #450a0a;
+            --primary-light: #7f1d1d;
+        }
+        
+        body { font-family: 'Lora', serif; background-color: #f4f4f5; color: #1c1917; }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        
+        .header-gradient {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 50%, var(--primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-gradient::after {
+            content: ""; position: absolute; inset: 0;
+            background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            opacity: 0.1; pointer-events: none;
+        }
+
+        /* Cores Litúrgicas */
+        .bg-lit-verde { background-color: #f0fdf4 !important; border-left: 6px solid #166534; } 
+        .bg-lit-roxo { background-color: #faf5ff !important; border-left: 6px solid #6b21a8; }  
+        .bg-lit-branco { background-color: #ffffff !important; border-left: 6px solid #e5e7eb; } 
+        .bg-lit-vermelho { background-color: #fef2f2 !important; border-left: 6px solid #b91c1c; }
+        .bg-lit-pascoa { background: linear-gradient(90deg, #ffffff 75%, #fef9c3 100%) !important; border-left: 6px solid #fbbf24; }
+
+        /* Tags de Grupos */
+        .tag-grupo { 
+            padding: 4px 8px; 
+            border-radius: 4px; 
+            font-weight: 800; 
+            font-size: 10px; 
+            display: inline-block; 
+            min-width: 90px; 
+            text-align: center; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Distinção Márcio vs Marco */
+        .bg-marcio { background-color: #0f766e !important; color: #fafee2 !important; border: 1px solid #064e4b; }
+        .bg-marco { background-color: #0369a1 !important; color: white !important; }
+
+        .bg-casais { background-color: #1e40af; color: white; }
+        .bg-coral { background-color: #991b1b; color: white; }
+        .bg-jovens { background-color: #d97706; color: white; }
+        .bg-fatima { background-color: #166534; color: white; }
+        .bg-adefinir { background-color: #78716c; color: white; }
+        .bg-eac { background-color: #701a75; color: white; }
+
+        /* Upload de Imagem */
+        .image-container { position: relative; cursor: pointer; transition: transform 0.3s; }
+        .image-container:hover { transform: scale(1.05); }
+        .upload-overlay {
+            position: absolute; inset: 0; background: rgba(0,0,0,0.5);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s; color: white; border-radius: 9999px;
+            font-size: 10px; text-transform: uppercase; font-weight: bold;
+        }
+        .image-container:hover .upload-overlay { opacity: 1; }
+        
+        @media print { 
+            .no-print { display: none !important; }
+            .print-full { width: 100% !important; border: none !important; }
+            body { background: white; }
+        }
+    </style>
+</head>
+<body class="bg-stone-100">
+
+    <!-- NAV BAR -->
+    <nav class="no-print bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="image-container w-12 h-12 bg-stone-200 rounded-full flex items-center justify-center border-2 border-amber-500 shadow-inner overflow-hidden" onclick="document.getElementById('file-input').click()">
+                    <img id="profile-display" src="" alt="Coração" class="w-full h-full object-cover hidden">
+                    <div id="placeholder-icon">
+                        <svg viewBox="0 0 100 100" class="w-6 h-6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 85C50 85 15 65 15 40C15 25 25 15 40 15C45 15 50 20 50 20C50 20 55 15 60 15C75 15 85 25 85 40C85 65 50 85 50 85Z" fill="#ff4d4d" stroke="#fcd34d" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="upload-overlay">Trocar</div>
+                    <input type="file" id="file-input" class="hidden" accept="image/*" onchange="previewImage(event)">
+                </div>
+                <div>
+                    <h1 class="font-cinzel font-bold text-stone-800 text-sm leading-none">Imaculado Coração de Maria</h1>
+                    <span class="text-[9px] uppercase tracking-tighter text-amber-700 font-bold">Ministério de Música e Liturgia</span>
+                </div>
+            </div>
+            <button onclick="window.print()" class="text-[10px] font-bold uppercase bg-stone-800 text-white px-4 py-2 rounded-full hover:bg-black transition">Imprimir</button>
+        </div>
+    </nav>
+
+    <div class="max-w-[1440px] mx-auto bg-white shadow-2xl border-x border-stone-300 min-h-screen">
+        
+        <!-- HEADER -->
+        <header class="header-gradient text-white p-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center relative z-10">
+                <div class="text-center lg:text-left">
+                    <h2 class="text-2xl font-bold font-cinzel text-amber-400">ESCALA LITÚRGICA</h2>
+                    <p class="text-stone-200 font-cinzel text-[10px] tracking-widest uppercase opacity-80">Gestão Paroquial de Música</p>
+                </div>
+
+                <div class="text-center border-stone-400/30 lg:border-x px-6">
+                    <p class="text-[10px] uppercase tracking-widest text-amber-400 font-bold mb-1">Responsáveis</p>
+                    <p class="text-xs text-white/90">
+                        Pároco: <strong>Pe. Sebastiano</strong> | Coord: <strong>Rogério Marinho</strong>
+                    </p>
+                </div>
+
+                <div class="no-print flex flex-col items-center lg:items-end">
+                    <div class="flex items-center gap-3 mb-2 bg-black/30 p-2 rounded-lg border border-white/10">
+                        <button onclick="mudarAno(-1)" class="text-amber-400 px-2">❮</button>
+                        <span id="ano-label" class="text-lg font-cinzel font-bold w-12 text-center">2025</span>
+                        <button onclick="mudarAno(1)" class="text-amber-400 px-2">❯</button>
+                    </div>
+                    <div class="grid grid-cols-6 gap-1" id="grade-meses"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- STATUS -->
+        <div class="bg-stone-50 p-4 border-b flex items-center gap-4 border-t-4 border-amber-600">
+            <div id="cor-circulo" class="w-12 h-12 rounded-full shadow-md border-2 border-white"></div>
+            <div>
+                <h2 id="tempo-nome" class="font-cinzel font-bold text-xl text-stone-800 uppercase tracking-tighter">--</h2>
+                <p id="mes-dedicado" class="text-[10px] font-bold text-amber-700 uppercase tracking-widest">Mês Dedicado a: --</p>
+            </div>
+        </div>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <div class="flex flex-col lg:flex-row">
+            
+            <div class="flex-1 p-4">
+                <!-- TABELA -->
+                <div class="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden mb-6">
+                    <table class="w-full border-collapse">
+                        <thead class="bg-stone-800 text-[10px] uppercase font-bold text-amber-400">
+                            <tr>
+                                <th class="p-3 border border-stone-700 w-24">Data</th>
+                                <th class="p-3 border border-stone-700 text-left">Liturgia e Salmo</th>
+                                <th class="p-3 border border-stone-700">Sáb 16h</th>
+                                <th class="p-3 border border-stone-700">Dom 07:30h</th>
+                                <th class="p-3 border border-stone-700">Dom 09:00h</th>
+                                <th class="p-3 border border-stone-700">Dom 17:00h</th>
+                                <th class="p-3 border border-stone-700">Dom 19:00h</th>
+                            </tr>
+                        </thead>
+                        <tbody id="corpo-escala" class="text-center font-medium text-[11px]"></tbody>
+                    </table>
+                </div>
+
+                <!-- SEÇÃO DE AVISOS CORRIGIDA -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-amber-50 border border-amber-200 rounded-lg shadow-sm">
+                        <h4 class="font-cinzel font-bold text-amber-900 text-[11px] mb-3 border-b border-amber-200 pb-1 uppercase flex items-center gap-2">
+                            <span class="w-2 h-2 bg-amber-600 rounded-full"></span> Recomendações Gerais
+                        </h4>
+                        <ul class="text-[11px] space-y-2 text-amber-900/80">
+                            <li>• <strong>Substituições:</strong> O grupo deve providenciar sua substituição com no mínimo 48h.</li>
+                            <li>• <strong>Ensaios:</strong> Recomenda-se ensaio do Salmo 30 min antes da celebração.</li>
+                            <li>• <strong>Liturgia:</strong> As músicas devem seguir rigorosamente o Missal Romano.</li>
+                            <li>• <strong>Salmistas:</strong> Usar o jaleco quando solicitado e preparar a leitura.</li>
+                            <li>• <strong>Comunhão:</strong> Os músicos devem comungar ordenadamente após a assembleia.</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 bg-stone-100 border border-stone-300 rounded-lg shadow-sm">
+                        <h4 class="font-cinzel font-bold text-stone-800 text-[11px] mb-3 border-b border-stone-400 pb-1 uppercase flex items-center gap-2">
+                            <span class="w-2 h-2 bg-stone-600 rounded-full"></span> Orientações Técnicas
+                        </h4>
+                        <ul class="text-[11px] space-y-2 text-stone-700">
+                            <li>• <strong>Som:</strong> Verificar altura e volume junto à equipe de som antes da Missa.</li>
+                            <li>• <strong>Instrumentos:</strong> Devem ser regulados em volume inferior às vozes.</li>
+                            <li>• <strong>Postura:</strong> Manter o coro organizado e respeitar o silêncio sagrado.</li>
+                            <li>• <strong>Espiritualidade:</strong> A música é oração; prepare o espírito antes da voz.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BARRA LATERAL -->
+            <aside class="w-full lg:w-72 bg-stone-50 p-4 border-l border-stone-200 no-print">
+                <h3 class="font-cinzel font-bold text-stone-800 border-b-2 border-amber-600 mb-4 pb-1 uppercase text-[10px] tracking-widest flex justify-between">
+                    <span>Festividades</span>
+                    <span id="label-mes-aside" class="text-amber-600">--</span>
+                </h3>
+                <div id="lista-datas" class="space-y-2"></div>
+            </aside>
+        </div>
+
+        <footer class="bg-stone-900 text-stone-500 py-3 text-[9px] text-center uppercase font-cinzel border-t border-stone-800 mt-6">
+            Paróquia Imaculado Coração de Maria • Av. Ana Costa, 186 • Santos/SP
+        </footer>
+    </div>
+
+    <script>
+        let anoAtual = 2025;
+        let mesAtual = new Date().getMonth();
+
+        const infoTempos = {
+            ADVENTO: { nome: "Tempo do Advento", cor: "#6b21a8", css: "bg-lit-roxo" },
+            NATAL: { nome: "Tempo do Natal", cor: "#ffffff", css: "bg-lit-branco" },
+            COMUM: { nome: "Tempo Comum", cor: "#166534", css: "bg-lit-verde" },
+            QUARESMA: { nome: "Tempo da Quaresma", cor: "#6b21a8", css: "bg-lit-roxo" },
+            PASCOA: { nome: "Tempo Pascal", cor: "#fbbf24", css: "bg-lit-pascoa" },
+            SEMANA_SANTA: { nome: "Semana Santa", cor: "#b91c1c", css: "bg-lit-vermelho" }
+        };
+
+        const mesesDedicados = ["Santíssimo Nome de Jesus", "Sagrada Família", "São José", "Santo Espírito", "Nossa Senhora", "Sagrado Coração de Jesus", "Preciosíssimo Sangue", "Imaculado Coração de Maria", "Bíblia", "Nossa Senhora do Rosário", "Santos e Almas", "Menino Jesus"];
+
+const datasImportantes = [
+            {d:"01/01", t:"Mãe de Deus"}, {d:"11/01", t:"Batismo do Senhor"}, {d:"20/01", t:"Dia de São Sebastião"},
+            {d:"03/02", t:"Dia de São Brás"}, {d:"18/02", t:"Quarta feira de Cinzas"},
+            {d:"18/03", t:"Via Sacra"}, {d:"19/03", t:"Dia de São José"}, {d:"20/03", t:"Via Sacra"},
+            {d:"23/03", t:"Via Sacra"}, {d:"24/03", t:"Aniversário do Pe Sebastiano"}, {d:"25/03", t:"Via Sacra"},
+            {d:"27/03", t:"Via Sacra"}, {d:"29/03", t:"Domingo de Ramos"}, {d:"30/03", t:"Via Sacra"},
+            {d:"03/04", t:"Sexta feira Santa"}, {d:"04/04", t:"Vigília Pascal"}, {d:"05/04", t:"Páscoa"}, {d:"23/04", t:"Dia de São Jorge"},
+            {d:"09/05", t:"Aniversário do Pe Almir"}, {d:"12/05", t:"Dia de São Pancrácio"}, {d:"13/05", t:"Dia de Nossa Senhora de Fátima"},
+            {d:"22/05", t:"Dia de Santa Rita de Cássia"}, {d:"24/05", t:"Pentecostes"},
+            {d:"04/06", t:"Corpus Christi"}, {d:"13/06", t:"Dia de Santo Antônio"}, {d:"24/06", t:"Dia de São João Batista"}, {d:"29/06", t:"Dia de São Pedro e São Paulo"},
+            {d:"02/08", t:"Aniv. Sacerdócio Pe Almir"}, {d:"10/08", t:"Dia de São Lourenço"},
+            {d:"08/09", t:"Nossa Senhora do Monte Serrat"}, {d:"19/09", t:"Nossa Senhora La Salete"},
+            {d:"01/10", t:"Dia de Santa Teresinha"}, {d:"04/10", t:"Dia de São Francisco"}, {d:"12/10", t:"Nossa Senhora Aparecida"}, {d:"24/10", t:"Dia de S. Antônio M. Claret"},
+            {d:"01/11", t:"Dia de Todos os Santos"}, {d:"02/11", t:"Finados"}, {d:"22/11", t:"Dia de Santa Cecília"},
+            {d:"05/12", t:"Aniv. Sacerdócio Sebastiano"}, {d:"06/12", t:"Dia de São Nicolau"}, {d:"09/12", t:"Novena Natal 1"},
+            {d:"11/12", t:"Novena Natal 2"}, {d:"13/12", t:"Dia de Santa Luzia"}, {d:"14/12", t:"Novena Natal 3"},
+            {d:"16/12", t:"Novena Natal 4"}, {d:"18/12", t:"Novena Natal 5"}, {d:"25/12", t:"Natal"},
+            {d:"26/12", t:"Dia de Santo Estevão"}, {d:"27/12", t:"Dia da Sagrada Família"}
+        ];
+
+        const salmosMock = [
+            { ref: "SALMO 24 (25)", r: "Ensinai-me vossos caminhos, ó Senhor." },
+            { ref: "SALMO 97 (98)", r: "Os confins do universo contemplaram a salvação." }
+        ];
+
+        function getTempoLiturgico(date) {
+            const m = date.getMonth();
+            const d = date.getDate();
+            if (m === 11 && d >= 25) return infoTempos.NATAL;
+            if (m === 2 || m === 3) return infoTempos.QUARESMA;
+            return infoTempos.COMUM;
+        }
+
+        function renderizar() {
+            const mesesAbrev = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+            const mesesNomes = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+            document.getElementById('ano-label').innerText = anoAtual;
+            document.getElementById('label-mes-aside').innerText = mesesNomes[mesAtual];
+            document.getElementById('mes-dedicado').innerText = `Mês Dedicado a: ${mesesDedicados[mesAtual]}`;
+            
+            const grade = document.getElementById('grade-meses');
+            grade.innerHTML = mesesAbrev.map((m, i) => `
+                <button onclick="mesAtual=${i}; renderizar()" class="text-[9px] p-1 w-8 rounded font-bold border transition-all ${i === mesAtual ? 'bg-amber-400 text-stone-900 border-amber-400' : 'border-white/20 text-white hover:bg-white/10'}">
+                    ${m}
+                </button>
+            `).join('');
+
+            const tPrimeiroDia = getTempoLiturgico(new Date(anoAtual, mesAtual, 1));
+            document.getElementById('cor-circulo').style.backgroundColor = tPrimeiroDia.cor;
+            document.getElementById('tempo-nome').innerText = tPrimeiroDia.nome;
+
+            const corpo = document.getElementById('corpo-escala');
+            corpo.innerHTML = '';
+            
+            let data = new Date(anoAtual, mesAtual, 1);
+            let domingos = [];
+            while(data.getMonth() === mesAtual) {
+                if(data.getDay() === 0) domingos.push(new Date(data));
+                data.setDate(data.getDate() + 1);
+            }
+
+            domingos.forEach((dom, i) => {
+                const sab = new Date(dom); sab.setDate(dom.getDate() - 1);
+                const tempoItem = getTempoLiturgico(dom);
+                const salmo = salmosMock[i % salmosMock.length];
+                
+                // Lógica de Grupos
+                const sabadoLista = ["MÁRCIO", "CORAL", "JOVENS", "MARCO", "A DEFINIR"];
+                const sabG = sabadoLista[i % sabadoLista.length];
+                
+                const getTag = (name) => {
+                    // Normaliza para classe css (remove acentos apenas para a classe)
+                    const cssClass = name.toLowerCase().replace("á", "a").replace(/\s/g, "");
+                    return `<span class="tag-grupo bg-${cssClass}">${name}</span>`;
+                };
+
+                const dtFmt = (dt) => `${dt.getDate().toString().padStart(2, '0')}/${(dt.getMonth()+1).toString().padStart(2, '0')}`;
+
+                corpo.innerHTML += `
+                    <tr class="${tempoItem.css} border-stone-200">
+                        <td class="p-2 border font-bold bg-white/60">
+                            <span class="text-[8px] uppercase text-stone-500 block mb-0.5">Sáb/Dom</span>
+                            ${dtFmt(sab)} | ${dtFmt(dom)}
+                        </td>
+                        <td class="p-2 border text-left italic text-stone-600 leading-tight">
+                            <div class="font-cinzel font-bold text-stone-800 text-[9px] uppercase">${i+1}º Dom ${tempoItem.nome}</div>
+                            <div class="bg-white/40 p-1 rounded border border-stone-200 mt-1">
+                                <span class="font-bold text-rose-900 block text-[9px]">${salmo.ref}</span>
+                                <span class="text-stone-700">R: ${salmo.r}</span>
+                            </div>
+                        </td>
+                        <td class="p-1 border">${getTag(sabG)}</td>
+                        <td class="p-1 border">${getTag("CASAIS")}</td>
+                        <td class="p-1 border">${getTag("FÁTIMA")}</td>
+                        <td class="p-1 border">${getTag(i === 2 ? "EAC" : "JOVENS")}</td>
+                        <td class="p-1 border">${getTag(i === 1 ? "MARCO" : "CORAL")}</td>
+                    </tr>
+                `;  
+            });
+
+            // Festividades
+            const mesStr = (mesAtual + 1).toString().padStart(2, '0');
+            const datasFiltradas = datasImportantes.filter(d => d.d.split('/')[1] === mesStr);
+            const listaD = document.getElementById('lista-datas');
+            listaD.innerHTML = datasFiltradas.length > 0 ? 
+                datasFiltradas.map(d => `
+                    <div class="p-2 bg-white border-l-4 border-amber-500 shadow-sm rounded">
+                        <div class="text-[9px] font-bold text-amber-700">${d.d}</div>
+                        <div class="text-[10px] font-bold text-stone-800 uppercase leading-none">${d.t}</div>
+                    </div>
+                `).join('') : '<div class="text-center p-4 text-stone-400 italic text-xs">Sem festas.</div>';
+        }
+
+        function mudarAno(n) { anoAtual += n; renderizar(); }
+
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('profile-display');
+                const placeholder = document.getElementById('placeholder-icon');
+                output.src = reader.result;
+                output.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+            }
+            if (event.target.files[0]) reader.readAsDataURL(event.target.files[0]);
+        }
+
+        window.onload = renderizar;
+    </script>
+</body>
+</html>
